@@ -4,7 +4,7 @@ WebXR + Three.js immersive puzzle experience for Meta Quest 3.
 
 ## Source package
 
-The complete saved source package, including assets and the wall-marquee animation, is attached to the `video-edition-v1` GitHub Release.
+The complete saved source package, including assets and the wall-marquee animation, is available directly in this repository.
 
 ## Local preview
 
