@@ -1,0 +1,18 @@
+{
+  "name": "BACK TO THE CAVE - WebXR VR",
+  "short_name": "BACK TO THE CAVE",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#01020a",
+  "theme_color": "#01020a",
+  "icons": [
+    {
+      "src": "./icons/cave-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

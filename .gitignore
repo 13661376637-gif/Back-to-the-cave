@@ -1,0 +1,11 @@
+# Local preview browsers and transient diagnostics.
+.tmp/
+
+# Editor and operating-system state.
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Dependencies and generated coverage output.
+node_modules/
+coverage/

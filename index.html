@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BACK TO THE CAVE - Wall Marquee Demo</title>
+    <meta name="codex-draft-label" content="Game First Level Demo - Transition And Final Level" />
+    <meta name="codex-stage-flow" content="transition-plus-game-final" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css?v=webxr-pano-v3" />
+  </head>
+  <body>
+    <main id="stage" data-flow="transition-plus-game-final" data-input-mode="trackball" aria-label="BACK TO THE CAVE transition and game">
+      <canvas id="space" aria-label="three dimensional grid cave"></canvas>
+      <button id="vr-button" type="button" hidden>ENTER VR</button>
+
+      <section class="map-sphere flashlight-node" data-geodesic-sphere aria-label="low poly flashlight controller"></section>
+
+    </main>
+    <script src="./vendor/three.module.js"></script>
+    <script src="./src/main.js?v=standing-173-v1"></script>
+    <script src="./src/flashlight-node.js?v=diamond-beam-v7"></script>
+    <script src="./src/photo-reveal-game.js?v=recording-roll-lock-v1"></script>
+    <script src="./src/game-ui.js?v=recording-roll-lock-v1"></script>
+    <script src="./src/webxr.js?v=quest3-controller-v21"></script>
+    <script>
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js?v=video-beam-visible-v2");
+    </script>
+  </body>
+</html>

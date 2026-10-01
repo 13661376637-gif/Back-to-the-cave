@@ -1,0 +1,206 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #02030c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(26, 31, 52, 0.26), transparent 38%),
+    #01020a;
+}
+
+#stage {
+  position: relative;
+  width: min(100vw, 177.7778vh);
+  height: min(100vh, 56.25vw);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
+  background: #01020a;
+}
+
+#space {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #01020a;
+}
+
+#vr-button {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 31;
+  min-width: 132px;
+  padding: 10px 16px;
+  color: #e9fbff;
+  font: 600 12px/1 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transform: translateX(-50%);
+  background: rgba(3, 18, 38, 0.86);
+  border: 1px solid rgba(119, 236, 255, 0.68);
+  box-shadow: 0 0 20px rgba(20, 218, 255, 0.24), inset 0 0 14px rgba(79, 177, 255, 0.08);
+}
+
+#vr-button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+#stage.is-xr #vr-button {
+  display: none !important;
+}
+
+#stage::before,
+#stage::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+}
+
+#stage::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.42), transparent 18%, transparent 68%, rgba(0, 0, 0, 0.5)),
+    radial-gradient(ellipse at 50% 47%, transparent 31%, rgba(0, 0, 0, 0.73) 100%);
+}
+
+#stage[data-ui-screen="game"]::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 19%, transparent 82%, rgba(0, 0, 0, 0.1)),
+    radial-gradient(ellipse at 50% 47%, transparent 46%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+#stage::after {
+  opacity: 0.085;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.13) 0,
+    rgba(255, 255, 255, 0.13) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+}
+
+.map-sphere {
+  position: absolute;
+  left: 50%;
+  bottom: -5%;
+  z-index: 5;
+  width: 100%;
+  height: 45%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%);
+  overflow: visible;
+  pointer-events: none;
+  transition: opacity 300ms ease, visibility 0s linear 300ms;
+}
+
+#stage.is-map-ready .map-sphere {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.map-sphere canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.map-sphere canvas:active {
+  cursor: grabbing;
+}
+
+.flashlight-node {
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+#stage[data-input-mode="trackball"] .map-sphere canvas {
+  cursor: none;
+}
+
+.success-feedback {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  z-index: 7;
+  width: min(82%, 360px);
+  padding: 14px 16px 15px;
+  color: #edf8ff;
+  text-align: center;
+  pointer-events: none;
+  background: rgba(2, 8, 20, 0.78);
+  border: 1px solid rgba(112, 222, 255, 0.42);
+  box-shadow: 0 0 28px rgba(20, 218, 255, 0.22), inset 0 0 18px rgba(79, 177, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 12px);
+  transition: opacity 260ms ease, transform 260ms ease, visibility 0s linear 260ms;
+}
+
+#stage.is-success .success-feedback {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition-delay: 0s;
+}
+
+.success-kicker {
+  margin: 0 0 5px;
+  color: #77ecff;
+}
+
+.success-feedback h1 {
+  margin: 0;
+  line-height: 1.15;
+}
+
+.success-feedback p {
+  margin: 7px 0 0;
+  line-height: 1.45;
+}
+
+@media (orientation: landscape) and (min-width: 820px) {
+  .map-sphere {
+    bottom: -5%;
+    width: 100%;
+    height: 43%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
